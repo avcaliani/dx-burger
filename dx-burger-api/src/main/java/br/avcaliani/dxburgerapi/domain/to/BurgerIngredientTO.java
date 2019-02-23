@@ -1,50 +1,38 @@
-package br.avcaliani.dxburgerapi.domain.entity;
+package br.avcaliani.dxburgerapi.domain.to;
 
+import br.avcaliani.dxburgerapi.domain.entity.BurgerIngredient;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.Objects;
-
 /**
- * Burger Ingredient Entity.
+ * Burger Ingredient Transfer Object.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
 @Data
-@Entity
-public class BurgerIngredient {
+public class BurgerIngredientTO {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(nullable = false)
     private Integer quantity;
+    private IngredientTO ingredient;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "burger_id")
-    private Burger burger;
+    /**
+     * Default Constructor.
+     */
+    public BurgerIngredientTO() { }
 
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id")
-    private Ingredient ingredient;
+    /**
+     * Entity Constructor.
+     *
+     * @param entity {@link BurgerIngredient} Entity.
+     */
+    public BurgerIngredientTO(BurgerIngredient entity) {
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BurgerIngredient that = (BurgerIngredient) o;
-        return Objects.equals(id, that.id);
+        if (entity == null)
+            return;
+
+        this.quantity = entity.getQuantity();
+        if (entity.getIngredient() != null)
+            this.ingredient = new IngredientTO(entity.getIngredient());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(this.id);
-    }
 }

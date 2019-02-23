@@ -6,23 +6,25 @@ import javax.persistence.*;
 import java.util.Objects;
 
 /**
- * Sale Entity.
+ * Promotion Entity.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
 @Data
 @Entity
-public class Sale {
+public class Promotion {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 500)
     private String description;
 
+    @Column(columnDefinition = "DECIMAL(9,2)")
     private Double percent;
+
     private Integer divider;
     private Boolean active;
 
@@ -31,14 +33,14 @@ public class Sale {
     private Ingredient ingredient;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "burger_id")
     private Burger burger;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Sale that = (Sale) o;
+        Promotion that = (Promotion) o;
         return Objects.equals(id, that.id);
     }
 

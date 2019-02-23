@@ -1,29 +1,21 @@
 package br.avcaliani.dxburgerapi.service;
 
-import br.avcaliani.dxburgerapi.domain.to.BurgerTO;
+import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
 
 import java.util.List;
 
 /**
- * Burger Service.
+ * Ingredient Service.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
-public interface BurgerService {
+public interface IngredientService {
 
     /**
-     * Return a list of Burgers.
+     * Return a list of Ingredients.
      *
-     * @return {@link List} of {@link BurgerTO}.
+     * @return {@link List} of {@link IngredientTO}.
      */
-    public List<BurgerTO> find();
-
-    /**
-     * Return a Burger based on Burger Id.
-     *
-     * @param burgerId Burger Id.
-     * @return {@link BurgerTO}.
-     */
-    public BurgerTO find(Long burgerId);
+    public List<IngredientTO> find();
 }

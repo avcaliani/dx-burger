@@ -2,37 +2,41 @@ package br.avcaliani.dxburgerapi.domain.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * User Entity.
+ * Order Item Entity.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
 @Data
 @Entity
-public class Order {
+@Table(name = "purchase_order_item")
+public class OrderItem {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @Column(unique = true, nullable = false)
-    private String phone;
+    @ManyToOne
+    @JoinColumn(name = "burger_id")
+    private Burger burger;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    List<OrderIngredient> ingredients;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Order that = (Order) o;
+        OrderItem that = (OrderItem) o;
         return Objects.equals(id, that.id);
     }
 

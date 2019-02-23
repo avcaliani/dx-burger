@@ -1,4 +1,4 @@
-package br.avcaliani.dxburgerapi.controller;
+package br.avcaliani.dxburgerapi.domain.entity;
 
 import lombok.Data;
 
@@ -8,6 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
+/**
+ * Ingredient Entity.
+ *
+ * @author Anthony Vilarim Caliani
+ * @since 19.2.0
+ */
 @Data
 @Entity
 public class Ingredient {
@@ -16,10 +22,10 @@ public class Ingredient {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 100)
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, columnDefinition = "DECIMAL(9,2)")
     private Double price;
 
     @Override

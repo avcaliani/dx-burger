@@ -1,21 +1,22 @@
 package br.avcaliani.dxburgerapi.service;
 
-import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
+import br.avcaliani.dxburgerapi.domain.entity.Promotion;
 
 import java.util.List;
 
 /**
- * Ingredient Service.
+ * Promotion Service.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
-public interface IngredientService {
+public interface PromotionService {
 
     /**
-     * Return a list of Ingredients.
+     * Return a list of Promotions based on active flag.
      *
-     * @return {@link List} of {@link IngredientTO}.
+     * @param active Active Flag.
+     * @return {@link List} of {@link Promotion}.
      */
-    public List<IngredientTO> find();
+    public List<Promotion> find(boolean active);
 }

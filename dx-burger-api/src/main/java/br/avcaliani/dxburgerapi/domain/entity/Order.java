@@ -8,39 +8,41 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * ClientOrder Entity.
+ * Order Entity.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
 @Data
 @Entity
-public class ClientOrder {
+@Table(name = "purchase_order")
+public class Order {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DECIMAL(9,2)")
     private Double total;
 
     @Column(nullable = false)
     private Date creationDate;
 
+    @Column(nullable = false, columnDefinition = "DECIMAL(9,2)")
     private Double discount;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClientOrder that = (ClientOrder) o;
+        Order that = (Order) o;
         return Objects.equals(id, that.id);
     }
 

@@ -9,30 +9,30 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 /**
- * Ingredient Entity.
+ * User Entity.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
 @Data
 @Entity
-public class Ingredient {
+public class User {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(unique = true, nullable = false)
-    private Double price;
+    @Column(unique = true, nullable = false, length = 20)
+    private String phone;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ingredient that = (Ingredient) o;
+        User that = (User) o;
         return Objects.equals(id, that.id);
     }
 

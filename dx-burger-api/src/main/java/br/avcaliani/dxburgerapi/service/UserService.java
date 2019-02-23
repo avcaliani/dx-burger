@@ -1,29 +1,20 @@
 package br.avcaliani.dxburgerapi.service;
 
-import br.avcaliani.dxburgerapi.domain.to.BurgerTO;
-
-import java.util.List;
+import br.avcaliani.dxburgerapi.domain.entity.User;
 
 /**
- * Burger Service.
+ * User Service.
  *
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
-public interface BurgerService {
+public interface UserService {
 
     /**
-     * Return a list of Burgers.
+     * Return user based on its phone number.
      *
-     * @return {@link List} of {@link BurgerTO}.
+     * @param phone User Phone Number.
+     * @return {@link User}.
      */
-    public List<BurgerTO> find();
-
-    /**
-     * Return a Burger based on Burger Id.
-     *
-     * @param burgerId Burger Id.
-     * @return {@link BurgerTO}.
-     */
-    public BurgerTO find(Long burgerId);
+    public User find(String phone);
 }
