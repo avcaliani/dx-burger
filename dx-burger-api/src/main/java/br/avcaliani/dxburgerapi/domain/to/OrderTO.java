@@ -22,7 +22,6 @@ public class OrderTO {
     private Long id;
     private Double total;
     private Double discount;
-    private Double finalPrice;
     private Date creationDate;
     private UserTO user;
     private List<OrderItemTO> items;
@@ -46,7 +45,6 @@ public class OrderTO {
         this.id = id;
         this.total = total;
         this.discount = discount;
-        this.finalPrice = total - discount;
         this.creationDate = creationDate;
 
         if (user != null)
@@ -67,7 +65,6 @@ public class OrderTO {
         this.total = entity.getTotal();
         this.creationDate = entity.getCreationDate();
         this.discount = entity.getDiscount();
-        this.finalPrice = total - discount;
 
         if (entity.getUser() != null)
             this.user = new UserTO(entity.getUser());
