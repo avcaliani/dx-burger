@@ -2,7 +2,6 @@ package br.avcaliani.dxburgerapi.domain.to;
 
 import br.avcaliani.dxburgerapi.domain.entity.Burger;
 import br.avcaliani.dxburgerapi.domain.entity.BurgerIngredient;
-import br.avcaliani.dxburgerapi.domain.entity.Ingredient;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -26,6 +25,17 @@ public class BurgerTO {
      * Default Constructor.
      */
     public BurgerTO() { }
+
+    /**
+     * Id and Name only constructor.
+     *
+     * @param id Burger Id.
+     * @param name Burger Name.
+     */
+    public BurgerTO(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     /**
      * Entity Constructor.

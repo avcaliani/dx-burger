@@ -30,6 +30,22 @@ public class BurgerIngredient {
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
+    /**
+     * Default Constructor.
+     */
+    public BurgerIngredient() { }
+
+    /**
+     * Basic Constructor.
+     *
+     * @param quantity Ingredient Quantity.
+     * @param ingredient {@link Ingredient}.
+     */
+    public BurgerIngredient(Integer quantity, Ingredient ingredient) {
+        this.quantity = quantity;
+        this.ingredient = ingredient;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -26,20 +26,16 @@ public class IngredientServiceImpl implements IngredientService {
      */
     @Override
     public List<IngredientTO> find() {
-        return parse(repository.findAll());
+        return repository.find();
     }
 
     /**
-     * Return a list of {@link IngredientTO} based on a list of {@link Ingredient}.
-     *
-     * @param ingredients List of {@link Ingredient}.
-     * @return List of {@link IngredientTO}.
+     * @see IngredientService#findMissing(List)
      */
-    private List<IngredientTO> parse(List<Ingredient> ingredients) {
-        if (ingredients == null || ingredients.isEmpty())
-            return null;
-        List<IngredientTO> tos = new ArrayList<>();
-        ingredients.forEach((Ingredient i) -> tos.add(new IngredientTO(i)));
-        return tos;
+    @Override
+    public List<Ingredient> findMissing(List<String> names) {
+        if (names == null || names.isEmpty())
+            return this.repository.findAll();
+        return this.repository.findMissingIngredients(names);
     }
 }

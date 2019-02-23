@@ -32,17 +32,6 @@ public class Burger {
     public Burger() {
     }
 
-    /**
-     * Id and Name only constructor.
-     *
-     * @param id Burger Id.
-     * @param name Burger Name.
-     */
-    public Burger(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
