@@ -25,11 +25,11 @@ public class OrderIngredient {
     private Integer quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_item_id")
+    @JoinColumn(name = "order_item_id", nullable = false)
     private OrderItem item;
 
     @ManyToOne
-    @JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "ingredient_id", nullable = false)
     private Ingredient ingredient;
 
     /**

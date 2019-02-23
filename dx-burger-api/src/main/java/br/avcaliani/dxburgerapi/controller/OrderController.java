@@ -36,7 +36,7 @@ public class OrderController extends AbstractController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<Response> find(@RequestBody OrderTO order) {
+    public ResponseEntity<Response> find(@RequestBody OrderTO order) throws Exception {
         return ResponseEntity.ok(new Response(this.service.save(order)));
     }
 }

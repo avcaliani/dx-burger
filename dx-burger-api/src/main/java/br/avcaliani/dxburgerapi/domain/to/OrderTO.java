@@ -2,6 +2,7 @@ package br.avcaliani.dxburgerapi.domain.to;
 
 import br.avcaliani.dxburgerapi.domain.entity.Order;
 import br.avcaliani.dxburgerapi.domain.entity.OrderItem;
+import br.avcaliani.dxburgerapi.domain.entity.User;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -32,6 +33,27 @@ public class OrderTO {
     public OrderTO() { }
 
     /**
+     * Simplified Order.
+     *
+     * @param id           Order Id.
+     * @param total        Order Total.
+     * @param discount     Order Discount.
+     * @param creationDate Order Creation Date.
+     * @param user         Order Customer.
+     */
+    public OrderTO(Long id, Double total, Double discount, Date creationDate, User user) {
+
+        this.id = id;
+        this.total = total;
+        this.discount = discount;
+        this.finalPrice = total - discount;
+        this.creationDate = creationDate;
+
+        if (user != null)
+            this.user = new UserTO(user);
+    }
+
+    /**
      * Entity Constructor.
      *
      * @param entity {@link Order} Entity.
@@ -45,6 +67,7 @@ public class OrderTO {
         this.total = entity.getTotal();
         this.creationDate = entity.getCreationDate();
         this.discount = entity.getDiscount();
+        this.finalPrice = total - discount;
 
         if (entity.getUser() != null)
             this.user = new UserTO(entity.getUser());

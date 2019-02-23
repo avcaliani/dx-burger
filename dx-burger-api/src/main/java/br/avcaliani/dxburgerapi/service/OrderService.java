@@ -33,5 +33,5 @@ public interface OrderService {
      * @param order {@link OrderTO}.
      * @return {@link OrderTO}.
      */
-    public OrderTO save(OrderTO order);
+    public OrderTO save(OrderTO order) throws Exception;
 }

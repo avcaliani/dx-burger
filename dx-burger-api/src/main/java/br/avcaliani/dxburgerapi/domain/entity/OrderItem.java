@@ -25,11 +25,11 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "burger_id")
+    @JoinColumn(name = "burger_id", nullable = false)
     private Burger burger;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)

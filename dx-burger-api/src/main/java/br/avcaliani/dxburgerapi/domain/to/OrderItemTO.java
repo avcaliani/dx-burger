@@ -39,7 +39,7 @@ public class OrderItemTO {
         this.id = entity.getId();
 
         if (entity.getBurger() != null)
-            this.burger = new BurgerTO(entity.getBurger());
+            this.burger = new BurgerTO(entity.getBurger().getId(), entity.getBurger().getName());
 
         List<OrderIngredient> items = entity.getIngredients();
         if (items != null && !items.isEmpty()) {
