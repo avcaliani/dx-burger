@@ -34,5 +34,4 @@ public class BurgerIngredientTO {
         if (entity.getIngredient() != null)
             this.ingredient = new IngredientTO(entity.getIngredient());
     }
-
 }

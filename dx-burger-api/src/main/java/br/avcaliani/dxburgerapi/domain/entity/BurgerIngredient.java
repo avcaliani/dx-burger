@@ -1,5 +1,6 @@
 package br.avcaliani.dxburgerapi.domain.entity;
 
+import br.avcaliani.dxburgerapi.domain.to.BurgerIngredientTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -44,6 +45,21 @@ public class BurgerIngredient {
     public BurgerIngredient(Integer quantity, Ingredient ingredient) {
         this.quantity = quantity;
         this.ingredient = ingredient;
+    }
+
+    /**
+     * TO Constructor.
+     *
+     * @param to {@link BurgerIngredientTO} TO.
+     */
+    public BurgerIngredient(BurgerIngredientTO to) {
+
+        if (to == null)
+            return;
+
+        this.quantity = to.getQuantity();
+        if (to.getIngredient() != null)
+            this.ingredient = new Ingredient(to.getIngredient());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package br.avcaliani.dxburgerapi.domain.entity;
 
+import br.avcaliani.dxburgerapi.domain.to.OrderIngredientTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,6 +31,28 @@ public class OrderIngredient {
     @ManyToOne
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
+
+    /**
+     * Default Constructor.
+     */
+    public OrderIngredient() { }
+
+    /**
+     * TO Constructor.
+     *
+     * @param to {@link OrderIngredientTO} TO.
+     */
+    public OrderIngredient(OrderIngredientTO to) {
+
+        if (to == null)
+            return;
+
+        this.id = to.getId();
+        this.quantity = to.getQuantity();
+
+        if (to.getIngredient() != null)
+            this.ingredient = new Ingredient(to.getIngredient());
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -22,8 +22,8 @@ public interface BurgerService {
     /**
      * Return a Burger based on Burger Id.
      *
-     * @param burgerId Burger Id.
+     * @param id Burger Id.
      * @return {@link BurgerTO}.
      */
-    public BurgerTO find(Long burgerId);
+    public BurgerTO find(Long id);
 }

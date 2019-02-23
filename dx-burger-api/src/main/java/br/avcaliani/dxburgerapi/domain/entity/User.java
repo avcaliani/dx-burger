@@ -1,5 +1,6 @@
 package br.avcaliani.dxburgerapi.domain.entity;
 
+import br.avcaliani.dxburgerapi.domain.to.UserTO;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -27,6 +28,26 @@ public class User {
 
     @Column(unique = true, nullable = false, length = 20)
     private String phone;
+
+    /**
+     * Default Constructor.
+     */
+    public User() { }
+
+    /**
+     * TO Constructor.
+     *
+     * @param to {@link UserTO} TO.
+     */
+    public User(UserTO to) {
+
+        if (to == null)
+            return;
+
+        this.id = to.getId();
+        this.name = to.getName();
+        this.phone = to.getPhone();
+    }
 
     @Override
     public boolean equals(Object o) {

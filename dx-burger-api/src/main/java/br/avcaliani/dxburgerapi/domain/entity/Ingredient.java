@@ -1,5 +1,6 @@
 package br.avcaliani.dxburgerapi.domain.entity;
 
+import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -27,6 +28,26 @@ public class Ingredient {
 
     @Column(unique = true, nullable = false, columnDefinition = "DECIMAL(9,2)")
     private Double price;
+
+    /**
+     * Default Constructor.
+     */
+    public Ingredient() { }
+
+    /**
+     * TO Constructor.
+     *
+     * @param to {@link IngredientTO} TO.
+     */
+    public Ingredient(IngredientTO to) {
+
+        if (to == null)
+            return;
+
+        this.id = to.getId();
+        this.name = to.getName();
+        this.price = to.getPrice();
+    }
 
     @Override
     public boolean equals(Object o) {
