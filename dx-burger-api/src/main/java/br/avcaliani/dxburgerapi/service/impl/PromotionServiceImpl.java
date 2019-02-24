@@ -1,7 +1,9 @@
-package br.avcaliani.dxburgerapi.service;
+package br.avcaliani.dxburgerapi.service.impl;
 
 import br.avcaliani.dxburgerapi.domain.entity.Promotion;
 import br.avcaliani.dxburgerapi.repository.PromotionRepository;
+import br.avcaliani.dxburgerapi.service.IngredientService;
+import br.avcaliani.dxburgerapi.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

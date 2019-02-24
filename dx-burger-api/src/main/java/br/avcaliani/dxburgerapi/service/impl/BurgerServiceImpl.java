@@ -1,4 +1,4 @@
-package br.avcaliani.dxburgerapi.service;
+package br.avcaliani.dxburgerapi.service.impl;
 
 import br.avcaliani.dxburgerapi.domain.entity.Burger;
 import br.avcaliani.dxburgerapi.domain.to.BurgerIngredientTO;
@@ -6,6 +6,8 @@ import br.avcaliani.dxburgerapi.domain.to.BurgerTO;
 import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
 import br.avcaliani.dxburgerapi.repository.BurgerIngredientRepository;
 import br.avcaliani.dxburgerapi.repository.BurgerRepository;
+import br.avcaliani.dxburgerapi.service.BurgerService;
+import br.avcaliani.dxburgerapi.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,8 @@
-package br.avcaliani.dxburgerapi.service;
+package br.avcaliani.dxburgerapi.service.impl;
 
 import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
 import br.avcaliani.dxburgerapi.repository.IngredientRepository;
+import br.avcaliani.dxburgerapi.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package br.avcaliani.dxburgerapi.service;
+package br.avcaliani.dxburgerapi.service.impl;
 
 import br.avcaliani.dxburgerapi.domain.entity.Order;
 import br.avcaliani.dxburgerapi.domain.entity.OrderIngredient;
@@ -9,6 +9,9 @@ import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderPriceTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 import br.avcaliani.dxburgerapi.repository.OrderRepository;
+import br.avcaliani.dxburgerapi.service.IngredientService;
+import br.avcaliani.dxburgerapi.service.OrderService;
+import br.avcaliani.dxburgerapi.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

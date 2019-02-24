@@ -1,8 +1,9 @@
-package br.avcaliani.dxburgerapi.service;
+package br.avcaliani.dxburgerapi.service.impl;
 
 import br.avcaliani.dxburgerapi.domain.entity.User;
 import br.avcaliani.dxburgerapi.repository.UserRepository;
-import br.avcaliani.dxburgerapi.util.Parser;
+import br.avcaliani.dxburgerapi.service.UserService;
+import br.avcaliani.dxburgerapi.common.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

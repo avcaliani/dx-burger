@@ -1,4 +1,4 @@
-package br.avcaliani.dxburgerapi.util;
+package br.avcaliani.dxburgerapi.common;
 
 /**
  * Parser Util.
