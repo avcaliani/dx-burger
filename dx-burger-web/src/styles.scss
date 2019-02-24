@@ -1,4 +1,8 @@
 @charset "UTF-8";
 
-$primary: #000;
-$accent: #ff3838;
+$primary: #000 !default;
+$accent: #ff3838 !default;
+
+.accent {
+    color: $accent !important;
+}
