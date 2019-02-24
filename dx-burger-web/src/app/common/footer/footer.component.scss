@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+@import "../../../styles.scss";
+
+.footer {
+    font-size: smaller;
+    background: white;
+    color: gray;
+    padding: 5px 15px;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+
+    a {
+        color: $primary;
+        text-decoration: none;
+        transition: color .3s ease-in-out;
+
+        &:hover {
+            color: $accent;
+        }
+    }
+    .owner {
+        display: inline-block;
+    }
+    .copyright {
+        float: right;
+    }
+}
