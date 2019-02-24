@@ -48,10 +48,10 @@ public class Burger {
         this.id = to.getId();
         this.name = to.getName();
 
-        List<BurgerIngredientTO> ingredients = to.getIngredients();
-        if (ingredients != null && !ingredients.isEmpty()) {
+        List<BurgerIngredientTO> items = to.getIngredients();
+        if (items != null && !items.isEmpty()) {
             this.ingredients = new ArrayList<>();
-            ingredients.forEach(
+            items.forEach(
                     (BurgerIngredientTO i) -> this.ingredients.add(new BurgerIngredient(i))
             );
         }

@@ -21,6 +21,17 @@ public class BurgerIngredientTO {
     public BurgerIngredientTO() { }
 
     /**
+     * Basic Constructor.
+     *
+     * @param quantity Ingredient Quantity.
+     * @param ingredient {@link IngredientTO}.
+     */
+    public BurgerIngredientTO(Integer quantity, IngredientTO ingredient) {
+        this.quantity = quantity;
+        this.ingredient = ingredient;
+    }
+
+    /**
      * Entity Constructor.
      *
      * @param entity {@link BurgerIngredient} Entity.

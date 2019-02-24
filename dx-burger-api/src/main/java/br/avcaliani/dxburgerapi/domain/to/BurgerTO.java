@@ -19,6 +19,7 @@ public class BurgerTO {
 
     private Long id;
     private String name;
+    private Double price;
     private List<BurgerIngredientTO> ingredients;
 
     /**
@@ -50,10 +51,10 @@ public class BurgerTO {
         this.id = entity.getId();
         this.name = entity.getName();
 
-        List<BurgerIngredient> ingredients = entity.getIngredients();
-        if (ingredients != null && !ingredients.isEmpty()) {
+        List<BurgerIngredient> items = entity.getIngredients();
+        if (items != null && !items.isEmpty()) {
             this.ingredients = new ArrayList<>();
-            ingredients.forEach(
+            items.forEach(
                     (BurgerIngredient i) -> this.ingredients.add(new BurgerIngredientTO(i))
             );
         }

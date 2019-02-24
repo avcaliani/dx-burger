@@ -69,10 +69,10 @@ public class OrderTO {
         if (entity.getUser() != null)
             this.user = new UserTO(entity.getUser());
 
-        List<OrderItem> items = entity.getItems();
-        if (items != null && !items.isEmpty()) {
+        List<OrderItem> orderItems = entity.getItems();
+        if (orderItems != null && !orderItems.isEmpty()) {
             this.items = new ArrayList<>();
-            items.forEach((OrderItem i) -> this.items.add(new OrderItemTO(i)));
+            orderItems.forEach((OrderItem i) -> this.items.add(new OrderItemTO(i)));
         }
     }
 

@@ -37,7 +37,9 @@ public class UserServiceImpl implements UserService {
         if (user == null)
             return null;
 
+        this.validate(user);
         user.setPhone(Parser.replaceAllNonNumeric(user.getPhone()));
+
         return repository.save(user);
     }
 

@@ -23,7 +23,7 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private final Logger L = LoggerFactory.getLogger(this.getClass());
+    private static final Logger L = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     private OrderRepository repository;

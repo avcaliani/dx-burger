@@ -29,6 +29,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
      *
      * @return {@link List} of {@link Ingredient}.
      */
-    @Query("SELECT i FROM Ingredient i WHERE i.name NOT IN :names")
-    public List<Ingredient> findMissingIngredients(@Param("names") List<String> names);
+    @Query("SELECT new br.avcaliani.dxburgerapi.domain.to.IngredientTO(i) FROM Ingredient i WHERE i.name NOT IN :names")
+    public List<IngredientTO> findMissingIngredients(@Param("names") List<String> names);
 }

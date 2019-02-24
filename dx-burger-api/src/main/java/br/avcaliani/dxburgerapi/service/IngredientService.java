@@ -26,5 +26,5 @@ public interface IngredientService {
      * @param names {@link List} of Ingredient names.
      * @return {@link List} of {@link IngredientTO}.
      */
-    public List<Ingredient> findMissing(List<String> names);
+    public List<IngredientTO> findMissing(List<String> names);
 }

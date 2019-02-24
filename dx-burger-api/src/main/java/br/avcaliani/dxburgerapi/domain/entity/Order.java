@@ -64,10 +64,10 @@ public class Order {
         if (to.getUser() != null)
             this.user = new User(to.getUser());
 
-        List<OrderItemTO> items = to.getItems();
-        if (items != null && !items.isEmpty()) {
+        List<OrderItemTO> orderItems = to.getItems();
+        if (orderItems != null && !orderItems.isEmpty()) {
             this.items = new ArrayList<>();
-            items.forEach((OrderItemTO i) -> this.items.add(new OrderItem(i)));
+            orderItems.forEach((OrderItemTO i) -> this.items.add(new OrderItem(i)));
         }
     }
 

@@ -1,12 +1,10 @@
 package br.avcaliani.dxburgerapi.service;
 
-import br.avcaliani.dxburgerapi.domain.entity.Ingredient;
 import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
 import br.avcaliani.dxburgerapi.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,16 +24,16 @@ public class IngredientServiceImpl implements IngredientService {
      */
     @Override
     public List<IngredientTO> find() {
-        return repository.find();
+        return this.repository.find();
     }
 
     /**
      * @see IngredientService#findMissing(List)
      */
     @Override
-    public List<Ingredient> findMissing(List<String> names) {
+    public List<IngredientTO> findMissing(List<String> names) {
         if (names == null || names.isEmpty())
-            return this.repository.findAll();
+            return this.repository.find();
         return this.repository.findMissingIngredients(names);
     }
 }

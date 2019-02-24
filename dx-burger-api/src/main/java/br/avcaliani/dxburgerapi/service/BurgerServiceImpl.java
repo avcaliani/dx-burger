@@ -1,11 +1,11 @@
 package br.avcaliani.dxburgerapi.service;
 
 import br.avcaliani.dxburgerapi.domain.entity.Burger;
-import br.avcaliani.dxburgerapi.domain.entity.BurgerIngredient;
-import br.avcaliani.dxburgerapi.domain.entity.Ingredient;
+import br.avcaliani.dxburgerapi.domain.to.BurgerIngredientTO;
 import br.avcaliani.dxburgerapi.domain.to.BurgerTO;
+import br.avcaliani.dxburgerapi.domain.to.IngredientTO;
+import br.avcaliani.dxburgerapi.repository.BurgerIngredientRepository;
 import br.avcaliani.dxburgerapi.repository.BurgerRepository;
-import br.avcaliani.dxburgerapi.repository.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +26,9 @@ public class BurgerServiceImpl implements BurgerService {
     private BurgerRepository repository;
 
     @Autowired
+    private BurgerIngredientRepository biRepository;
+
+    @Autowired
     private IngredientService ingredientService;
 
     /**
@@ -33,7 +36,11 @@ public class BurgerServiceImpl implements BurgerService {
      */
     @Override
     public List<BurgerTO> find() {
-        return repository.find();
+        List<BurgerTO> burgers = this.repository.find();
+        burgers.forEach(
+                (BurgerTO burger) -> burger.setPrice(biRepository.getBurgerPrice(burger.getId()))
+        );
+        return burgers;
     }
 
     /**
@@ -45,23 +52,27 @@ public class BurgerServiceImpl implements BurgerService {
         if (id == null || id < 0)
             return null;
 
-        Optional<Burger> opt = repository.findById(id);
+        Optional<Burger> opt = this.repository.findById(id);
         if (!opt.isPresent())
             return null;
 
-        final Burger burger = opt.get();
-        final List<String> currentIngredients = new ArrayList<>();
-        if (burger.getIngredients() != null && !burger.getIngredients().isEmpty())
-            burger.getIngredients().forEach((BurgerIngredient i) -> {
-                if (i.getIngredient() != null)
-                    currentIngredients.add(i.getIngredient().getName());
+        final BurgerTO burger = new BurgerTO(opt.get());
+        final List<String> currentIng = new ArrayList<>();
+
+        List<BurgerIngredientTO> burgerIng = burger.getIngredients();
+        if (burgerIng != null && !burgerIng.isEmpty())
+            burgerIng.forEach((BurgerIngredientTO bi) -> {
+                if (bi.getIngredient() != null) currentIng.add(bi.getIngredient().getName());
             });
         else
             burger.setIngredients(new ArrayList<>());
 
-        List<Ingredient> ingredients = this.ingredientService.findMissing(currentIngredients);
-        ingredients.forEach((Ingredient i) -> burger.getIngredients().add(new BurgerIngredient(0, i)));
+        List<IngredientTO> ingredients = this.ingredientService.findMissing(currentIng);
+        ingredients.forEach(
+                (IngredientTO i) -> burger.getIngredients().add(new BurgerIngredientTO(0, i))
+        );
 
-        return new BurgerTO(burger);
+        burger.setPrice(this.biRepository.getBurgerPrice(burger.getId()));
+        return burger;
     }
 }

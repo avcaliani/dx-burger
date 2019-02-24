@@ -9,6 +9,11 @@ package br.avcaliani.dxburgerapi.util;
 public class Parser {
 
     /**
+     * Private Constructor.
+     */
+    private Parser() { }
+
+    /**
      * Remove all non numeric characters.
      *
      * @param value String Value.
