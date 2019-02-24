@@ -27,4 +27,12 @@ public interface IngredientService {
      * @return {@link List} of {@link IngredientTO}.
      */
     public List<IngredientTO> findMissing(List<String> names);
+
+    /**
+     * Return ingredient price based on ingredient id.
+     *
+     * @param id Ingredient Id.
+     * @return Ingredient Price.
+     */
+    public Double getPrice(Long id);
 }

@@ -31,4 +31,12 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
      */
     @Query("SELECT new br.avcaliani.dxburgerapi.domain.to.IngredientTO(i) FROM Ingredient i WHERE i.name NOT IN :names")
     public List<IngredientTO> findMissingIngredients(@Param("names") List<String> names);
+
+    /**
+     * Return ingredient price based on ingredient id.
+     *
+     * @return Ingredient Price.
+     */
+    @Query("SELECT i.price FROM Ingredient i WHERE i.id = :id")
+    public Double getPrice(@Param("id") Long id);
 }

@@ -36,4 +36,11 @@ public class IngredientServiceImpl implements IngredientService {
             return this.repository.find();
         return this.repository.findMissingIngredients(names);
     }
+
+    @Override
+    public Double getPrice(Long id) {
+        if (id == null || id.longValue() < 0)
+            return 0.0;
+        return this.repository.getPrice(id);
+    }
 }

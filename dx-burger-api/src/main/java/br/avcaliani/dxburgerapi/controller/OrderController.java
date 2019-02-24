@@ -2,11 +2,14 @@ package br.avcaliani.dxburgerapi.controller;
 
 import br.avcaliani.dxburgerapi.controller.common.AbstractController;
 import br.avcaliani.dxburgerapi.controller.common.Response;
+import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 import br.avcaliani.dxburgerapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Order REST Controller.
@@ -38,5 +41,11 @@ public class OrderController extends AbstractController {
     @ResponseBody
     public ResponseEntity<Response> find(@RequestBody OrderTO order) throws Exception {
         return ResponseEntity.ok(new Response(this.service.save(order)));
+    }
+
+    @PostMapping("/price")
+    @ResponseBody
+    public ResponseEntity<Response> find(@RequestBody List<OrderItemTO> items) throws Exception {
+        return ResponseEntity.ok(new Response(this.service.calculate(items)));
     }
 }

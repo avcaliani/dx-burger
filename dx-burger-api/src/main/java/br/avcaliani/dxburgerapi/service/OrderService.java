@@ -1,5 +1,7 @@
 package br.avcaliani.dxburgerapi.service;
 
+import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
+import br.avcaliani.dxburgerapi.domain.to.OrderPriceTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 
 import java.util.List;
@@ -34,4 +36,12 @@ public interface OrderService {
      * @return {@link OrderTO}.
      */
     public OrderTO save(OrderTO order) throws Exception;
+
+    /**
+     * Calculate Order and Order Items price.
+     *
+     * @param items Order Items.
+     * @return {@link OrderPriceTO}.
+     */
+    public OrderPriceTO calculate(List<OrderItemTO> items);
 }

@@ -49,7 +49,7 @@ public class BurgerServiceImpl implements BurgerService {
     @Override
     public BurgerTO find(Long id) {
 
-        if (id == null || id < 0)
+        if (id == null || id.longValue() < 0)
             return null;
 
         Optional<Burger> opt = this.repository.findById(id);

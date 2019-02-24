@@ -18,6 +18,7 @@ import java.util.Objects;
 public class OrderItemTO {
 
     private Long id;
+    private Double price;
     private BurgerTO burger;
     List<OrderIngredientTO> ingredients;
 

@@ -4,6 +4,9 @@ import br.avcaliani.dxburgerapi.domain.entity.Order;
 import br.avcaliani.dxburgerapi.domain.entity.OrderIngredient;
 import br.avcaliani.dxburgerapi.domain.entity.OrderItem;
 import br.avcaliani.dxburgerapi.domain.entity.User;
+import br.avcaliani.dxburgerapi.domain.to.OrderIngredientTO;
+import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
+import br.avcaliani.dxburgerapi.domain.to.OrderPriceTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 import br.avcaliani.dxburgerapi.repository.OrderRepository;
 import org.slf4j.Logger;
@@ -31,6 +34,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private IngredientService ingredientService;
+
     /**
      * @see OrderService#find()
      */
@@ -54,6 +60,8 @@ public class OrderServiceImpl implements OrderService {
 
         Order entity = new Order(order);
         entity.setCreationDate(new Date());
+
+        Double total = this.calculate(order.getItems()).getTotal();
         entity.setTotal(100.0); // FIXME: Do it
         entity.setDiscount(5.0); // FIXME: Do it
         this.validate(entity);
@@ -64,6 +72,45 @@ public class OrderServiceImpl implements OrderService {
             L.error("ERROR: Fail to Save Order.", ex);
             throw new Exception("Your order is not ok, check it please.");
         }
+    }
+
+    /**
+     * @see OrderService#calculate(List)
+     */
+    @Override
+    public OrderPriceTO calculate(List<OrderItemTO> items) {
+
+        if (items == null || items.isEmpty())
+            return new OrderPriceTO(0.0, items);
+
+        Double total = 0.0;
+        for (OrderItemTO item : items) {
+            item.setPrice(this.calculateItem(item.getIngredients()));
+            total += item.getPrice();
+        }
+
+        return new OrderPriceTO(total, items);
+    }
+
+    /**
+     * Calculate an Order Item price.
+     *
+     * @param ingredients Ingredients List.
+     * @return Price.
+     */
+    private Double calculateItem(List<OrderIngredientTO> ingredients) {
+
+        if (ingredients == null || ingredients.isEmpty())
+            return 0.0;
+
+        Double price = 0.0;
+        for (OrderIngredientTO oi : ingredients) {
+            if (oi == null || oi.getQuantity() <= 0) continue;
+            price += oi.getQuantity() * this.ingredientService.getPrice(
+                    oi.getIngredient() != null ? oi.getIngredient().getId() : null
+            );
+        }
+        return price;
     }
 
     /**
