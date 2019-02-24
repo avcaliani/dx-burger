@@ -4,8 +4,8 @@
 
 .footer {
     font-size: smaller;
-    background: white;
-    color: gray;
+    background: $accent;
+    color: white;
     padding: 5px 15px;
     bottom: 0;
     display: block;
@@ -13,15 +13,16 @@
     width: 100%;
 
     a {
-        color: $primary;
+        color: white;
         text-decoration: none;
         transition: color .3s ease-in-out;
 
         &:hover {
-            color: $accent;
+            color: darken(white, 10);
         }
     }
     .copyright {
-        display: inline-block;
+        display: block;
+        text-align: center;
     }
 }
