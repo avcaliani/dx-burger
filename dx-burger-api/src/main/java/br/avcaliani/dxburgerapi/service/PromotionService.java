@@ -1,5 +1,6 @@
 package br.avcaliani.dxburgerapi.service;
 
+import br.avcaliani.dxburgerapi.common.Visitor;
 import br.avcaliani.dxburgerapi.domain.entity.Promotion;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
-public interface PromotionService {
+public interface PromotionService extends Visitor {
 
     /**
      * Return a list of Promotions based on active flag.

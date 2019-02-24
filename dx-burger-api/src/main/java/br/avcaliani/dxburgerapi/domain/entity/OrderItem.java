@@ -24,6 +24,12 @@ public class OrderItem {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false, columnDefinition = "DECIMAL(9,2)")
+    private Double price;
+
+    @Column(nullable = false, columnDefinition = "DECIMAL(9,2)")
+    private Double discount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
@@ -51,6 +57,8 @@ public class OrderItem {
             return;
 
         this.id = to.getId();
+        this.price = to.getPrice();
+        this.discount = to.getDiscount();
 
         if (to.getBurger() != null)
             this.burger = new Burger(to.getBurger());

@@ -4,13 +4,11 @@ import br.avcaliani.dxburgerapi.domain.entity.Order;
 import br.avcaliani.dxburgerapi.domain.entity.OrderIngredient;
 import br.avcaliani.dxburgerapi.domain.entity.OrderItem;
 import br.avcaliani.dxburgerapi.domain.entity.User;
-import br.avcaliani.dxburgerapi.domain.to.OrderIngredientTO;
-import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
-import br.avcaliani.dxburgerapi.domain.to.OrderPriceTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 import br.avcaliani.dxburgerapi.repository.OrderRepository;
 import br.avcaliani.dxburgerapi.service.IngredientService;
 import br.avcaliani.dxburgerapi.service.OrderService;
+import br.avcaliani.dxburgerapi.service.PromotionService;
 import br.avcaliani.dxburgerapi.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +38,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private IngredientService ingredientService;
 
+    @Autowired
+    private PromotionService promotionService;
+
     /**
      * @see OrderService#find()
      */
@@ -62,12 +63,11 @@ public class OrderServiceImpl implements OrderService {
     public OrderTO save(OrderTO order) throws Exception {
 
         Order entity = new Order(order);
-        entity.setCreationDate(new Date());
-
-        Double total = this.calculate(order.getItems()).getTotal();
-        entity.setTotal(100.0); // FIXME: Do it
-        entity.setDiscount(5.0); // FIXME: Do it
         this.validate(entity);
+
+        entity.setCreationDate(new Date());
+        entity.accept(this);
+        entity.accept(this.promotionService);
 
         try {
             return new OrderTO(this.repository.save(entity));
@@ -78,21 +78,46 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * @see OrderService#calculate(List)
+     * @see OrderService#calculate(OrderTO)
      */
     @Override
-    public OrderPriceTO calculate(List<OrderItemTO> items) {
+    public OrderTO calculate(OrderTO order) {
+        Order entity = new Order(order);
+        entity.accept(this);
+        entity.accept(this.promotionService);
+        return new OrderTO(entity);
+    }
+
+    @Override
+    public void visit(Order order) {
+
+        if (order == null)
+            return;
+
+        List<OrderItem> orderItems = order.getItems();
+        if (orderItems == null || orderItems.isEmpty())
+            return;
+
+        order.setTotal(this.getOrderPrice(orderItems));
+    }
+
+    /**
+     * Calculate Order price.
+     *
+     * @param items Order Items.
+     * @return Price.
+     */
+    private double getOrderPrice(List<OrderItem> items) {
 
         if (items == null || items.isEmpty())
-            return new OrderPriceTO(0.0, items);
+            return 0.0;
 
-        Double total = 0.0;
-        for (OrderItemTO item : items) {
-            item.setPrice(this.calculateItem(item.getIngredients()));
+        double total = 0.0;
+        for (OrderItem item : items) {
+            item.setPrice(this.getItemPrice(item.getIngredients()));
             total += item.getPrice();
         }
-
-        return new OrderPriceTO(total, items);
+        return total;
     }
 
     /**
@@ -101,13 +126,13 @@ public class OrderServiceImpl implements OrderService {
      * @param ingredients Ingredients List.
      * @return Price.
      */
-    private Double calculateItem(List<OrderIngredientTO> ingredients) {
+    private Double getItemPrice(List<OrderIngredient> ingredients) {
 
         if (ingredients == null || ingredients.isEmpty())
             return 0.0;
 
         Double price = 0.0;
-        for (OrderIngredientTO oi : ingredients) {
+        for (OrderIngredient oi : ingredients) {
             if (oi == null || oi.getQuantity() <= 0) continue;
             price += oi.getQuantity() * this.ingredientService.getPrice(
                     oi.getIngredient() != null ? oi.getIngredient().getId() : null

@@ -24,6 +24,15 @@ public class IngredientTO {
     public IngredientTO() { }
 
     /**
+     * Default Constructor.
+     *
+     * @param id Ingredient Id.
+     */
+    public IngredientTO(Long id) {
+        this.id = id;
+    }
+
+    /**
      * Entity Constructor.
      *
      * @param entity {@link Ingredient} Entity.

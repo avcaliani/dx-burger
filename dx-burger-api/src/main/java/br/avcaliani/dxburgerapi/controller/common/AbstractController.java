@@ -23,7 +23,8 @@ public class AbstractController {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response> exceptionHandler(Exception ex){
-        logger.error("ERROR: {0} at {1}", ex.getMessage(), ex.getStackTrace()[0], ex);
+        if (logger.isErrorEnabled())
+            logger.error(String.format("ERROR: %s at %s", ex.getMessage(), ex.getStackTrace()[0]), ex);
         return ResponseEntity.status(500).body(new Response(ex, 200));
     }
 }

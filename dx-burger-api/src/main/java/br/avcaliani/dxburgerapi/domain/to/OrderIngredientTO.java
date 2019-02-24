@@ -24,6 +24,17 @@ public class OrderIngredientTO {
     public OrderIngredientTO() { }
 
     /**
+     * Basic Constructor.
+     *
+     * @param quantity      Quantity.
+     * @param ingredient    Ingredient.
+     */
+    public OrderIngredientTO(Integer quantity, IngredientTO ingredient) {
+        this.quantity = quantity;
+        this.ingredient = ingredient;
+    }
+
+    /**
      * Entity Constructor.
      *
      * @param entity {@link OrderIngredient} Entity.

@@ -19,6 +19,7 @@ public class OrderItemTO {
 
     private Long id;
     private Double price;
+    private Double discount;
     private BurgerTO burger;
     List<OrderIngredientTO> ingredients;
 
@@ -38,6 +39,8 @@ public class OrderItemTO {
             return;
 
         this.id = entity.getId();
+        this.price = entity.getPrice();
+        this.discount = entity.getDiscount();
 
         if (entity.getBurger() != null)
             this.burger = new BurgerTO(entity.getBurger().getId(), entity.getBurger().getName());

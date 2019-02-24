@@ -1,7 +1,6 @@
 package br.avcaliani.dxburgerapi.service;
 
-import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
-import br.avcaliani.dxburgerapi.domain.to.OrderPriceTO;
+import br.avcaliani.dxburgerapi.common.Visitor;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
-public interface OrderService {
+public interface OrderService extends Visitor {
 
     /**
      * Return a list of Orders.
@@ -40,8 +39,8 @@ public interface OrderService {
     /**
      * Calculate Order and Order Items price.
      *
-     * @param items Order Items.
-     * @return {@link OrderPriceTO}.
+     * @param order Order.
+     * @return {@link OrderTO}.
      */
-    public OrderPriceTO calculate(List<OrderItemTO> items);
+    public OrderTO calculate(OrderTO order);
 }

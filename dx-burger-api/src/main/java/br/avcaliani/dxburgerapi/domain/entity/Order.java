@@ -1,5 +1,7 @@
 package br.avcaliani.dxburgerapi.domain.entity;
 
+import br.avcaliani.dxburgerapi.common.Visitable;
+import br.avcaliani.dxburgerapi.common.Visitor;
 import br.avcaliani.dxburgerapi.domain.to.OrderItemTO;
 import br.avcaliani.dxburgerapi.domain.to.OrderTO;
 import lombok.Data;
@@ -19,7 +21,7 @@ import java.util.Objects;
 @Data
 @Entity
 @Table(name = "purchase_order")
-public class Order {
+public class Order implements Visitable {
 
     @Id
     @GeneratedValue
@@ -28,11 +30,11 @@ public class Order {
     @Column(nullable = false, columnDefinition = "DECIMAL(9,2)")
     private Double total;
 
-    @Column(nullable = false)
-    private Date creationDate;
-
     @Column(nullable = false, columnDefinition = "DECIMAL(9,2)")
     private Double discount;
+
+    @Column(nullable = false)
+    private Date creationDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -69,6 +71,14 @@ public class Order {
             this.items = new ArrayList<>();
             orderItems.forEach((OrderItemTO i) -> this.items.add(new OrderItem(i)));
         }
+    }
+
+    /**
+     * @see Visitable#accept(Visitor)
+     */
+    @Override
+    public void accept(Visitor visitor) {
+        if (visitor != null) visitor.visit(this);
     }
 
     @Override

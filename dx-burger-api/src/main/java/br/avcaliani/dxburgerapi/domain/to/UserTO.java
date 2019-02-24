@@ -24,6 +24,17 @@ public class UserTO {
     public UserTO() { }
 
     /**
+     * Simple Constructor.
+     *
+     * @param name  User Name.
+     * @param phone User Phone.
+     */
+    public UserTO(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
+    /**
      * Entity Constructor.
      *
      * @param entity {@link User} Entity.

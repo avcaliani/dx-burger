@@ -43,6 +43,13 @@ INSERT INTO promotion (id, active, description, percent) VALUES (
 	'Light: Se o lanche tem alface e não tem bacon, ganha 10% de desconto.',
 	0.1
 );
+INSERT INTO promotion_ingredient_present (promotion_id, ingredient_id) VALUES (
+	1, 1 -- Alface
+);
+INSERT INTO promotion_ingredient_not_present (promotion_id, ingredient_id) VALUES (
+	1, 2 -- Bacon
+);
+
 INSERT INTO promotion (id, active, description, divider, ingredient_id) VALUES (
 	2,
 	true,
@@ -50,6 +57,7 @@ INSERT INTO promotion (id, active, description, divider, ingredient_id) VALUES (
 	3,
 	3 -- Hambúrguer
 );
+
 INSERT INTO promotion (id, active, description, divider, ingredient_id) VALUES (
 	3,
 	true,
