@@ -59,6 +59,10 @@
   text-decoration: none;
   transition: background .3s ease-in-out;
 
+  &.active {
+    display: none;
+  }
+
   &:hover {
     background: darken($accent, 10);
   }

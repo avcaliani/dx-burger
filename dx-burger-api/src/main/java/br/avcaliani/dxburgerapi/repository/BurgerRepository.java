@@ -20,7 +20,7 @@ public interface BurgerRepository extends JpaRepository<Burger, Long> {
      *
      * @return {@link List} of {@link BurgerTO}.
      */
-    @Query("SELECT new br.avcaliani.dxburgerapi.domain.to.BurgerTO(b.id, b.name) FROM Burger b")
+    @Query("SELECT new br.avcaliani.dxburgerapi.domain.to.BurgerTO(b) FROM Burger b")
     public List<BurgerTO> find();
 }
 

@@ -1,16 +1,22 @@
 <h3 class="title"> <span class="accent">#</span> Pedidos</h3>
-<a href="#" class="add-button">+</a>
-<div class="list-group">
-  <a class="list-group-item order-item">
-    <span class="order-item-price">R$ 14.00</span>
-    <span class="order-item-title"> Pedido 01 - Anthony Caliani</span>
+<a [routerLink]="[ '/order/new' ]" routerLinkActive="active" class="add-button">+</a>
+<div class="list-group" *ngIf="orders && orders.length > 0; else noOrders">
+  <a class="list-group-item order-item"
+    *ngFor="let order of orders"
+    [routerLink]="[ '/order', order.id ]" routerLinkActive="active">
+    <span class="order-item-price">{{ order.total | currency: 'BRL' }}</span>
+    <span class="order-item-title">Pedido {{ order.id }} - {{ order.user?.name }}</span>
     <span class="order-item-obs">
-      <span class="order-item-obs-phone">
-          <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>(19) 98160-3654
-      </span>
       <span class="order-item-obs-date">
-          <span class="glyphicon glyphicon-time" aria-hidden="true"></span>24/02/2019 19:00h
+          <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+          {{ order.creationDate | date: 'dd/MM/yyyy hh:mm'}}h
       </span>
     </span>
   </a>
 </div>
+<ng-template #noOrders>
+  <p>
+    Nenhum pedido ainda :(
+  </p>
+</ng-template>
+

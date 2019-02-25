@@ -4,22 +4,26 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { OrderEditResolver } from './order/order-edit/order-edit.resolver';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OrderListComponent } from './order/order-list/order-list.component';
-import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
-import { LoaderComponent } from './common/loader/loader.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
+import { OrderEmptyComponent } from './order/order-empty/order-empty.component';
+import { OrderEditComponent } from './order/order-edit/order-edit.component';
+import { BurgerIngredientsComponent } from './order/order-edit/burger-ingredients/burger-ingredients.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    LoaderComponent,
     OrderListComponent,
+    OrderEmptyComponent,
     OrderEditComponent,
+    BurgerIngredientsComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { LoaderComponent } from './common/loader/loader.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    OrderEditResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

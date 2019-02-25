@@ -3,6 +3,7 @@ package br.avcaliani.dxburgerapi.controller.common;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @author Anthony Vilarim Caliani
  * @since 19.2.0
  */
-public class AbstractController {
+@CrossOrigin(allowedHeaders = "*")
+public abstract class AbstractController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -25,6 +27,6 @@ public class AbstractController {
     public ResponseEntity<Response> exceptionHandler(Exception ex){
         if (logger.isErrorEnabled())
             logger.error(String.format("ERROR: %s at %s", ex.getMessage(), ex.getStackTrace()[0]), ex);
-        return ResponseEntity.status(500).body(new Response(ex, 200));
+        return ResponseEntity.status(200).body(new Response(ex, 200));
     }
 }

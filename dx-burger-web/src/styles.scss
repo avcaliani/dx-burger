@@ -6,3 +6,25 @@ $accent: #ff3838 !default;
 .accent {
     color: $accent !important;
 }
+
+body {
+  height: 100%;
+  height: -moz-available;          /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  height: fill-available;
+}
+
+.container {
+  height: 100%;
+  padding-top: 70px;
+  padding-bottom: 50px;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.full-width {
+  width: 100% !important;
+}

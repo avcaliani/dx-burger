@@ -68,6 +68,7 @@ public class OrderServiceImpl implements OrderService {
         entity.setCreationDate(new Date());
         entity.accept(this);
         entity.accept(this.promotionService);
+        this.fill(entity);
 
         try {
             return new OrderTO(this.repository.save(entity));
@@ -182,6 +183,23 @@ public class OrderServiceImpl implements OrderService {
 
             if (!hasIngredient)
                 throw new Exception("At least one ingredient is necessary to define a burger.");
+        }
+    }
+
+    /**
+     * Make the relation between order items.
+     *
+     * @param order {@link Order}.
+     */
+    private void fill(Order order) {
+
+        List<OrderItem> items = order.getItems();
+        List<OrderIngredient> ingredients = null;
+        for (OrderItem item : items) {
+            item.setOrder(order);
+            ingredients = item.getIngredients();
+            for (OrderIngredient ingredient : ingredients)
+                ingredient.setItem(item);
         }
     }
 }

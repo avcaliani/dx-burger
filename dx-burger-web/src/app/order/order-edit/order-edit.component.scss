@@ -1,0 +1,27 @@
+@charset "UFT-8";
+
+@import "../../../styles.scss";
+
+.order-price {
+  margin: 2em 4px;
+
+  .total,
+  .discount {
+    display: inline-block;
+    font-size: large;
+    margin-right: 5px;
+    color: $accent;
+
+    span {
+      font-size: small;
+      color: gray;
+      margin-right: 5px;
+      display: block;
+    }
+  }
+
+  .total {
+    float: right;
+    text-align: right;
+  }
+}

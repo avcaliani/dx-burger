@@ -39,9 +39,7 @@ public class BurgerServiceImpl implements BurgerService {
     @Override
     public List<BurgerTO> find() {
         List<BurgerTO> burgers = this.repository.find();
-        burgers.forEach(
-                (BurgerTO burger) -> burger.setPrice(biRepository.getBurgerPrice(burger.getId()))
-        );
+        burgers.forEach((BurgerTO burger) -> this.fill(burger));
         return burgers;
     }
 
@@ -59,6 +57,16 @@ public class BurgerServiceImpl implements BurgerService {
             return null;
 
         final BurgerTO burger = new BurgerTO(opt.get());
+        this.fill(burger);
+        return burger;
+    }
+
+    /**
+     * Fill burger data.
+     *
+     * @param burger Burger.
+     */
+    private void fill(final BurgerTO burger) {
         final List<String> currentIng = new ArrayList<>();
 
         List<BurgerIngredientTO> burgerIng = burger.getIngredients();
@@ -75,6 +83,5 @@ public class BurgerServiceImpl implements BurgerService {
         );
 
         burger.setPrice(this.biRepository.getBurgerPrice(burger.getId()));
-        return burger;
     }
 }
