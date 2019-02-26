@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormArray, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { BurgerIngredient, Burger, OrderItem } from '../order.model';
+import { BurgerIngredient, Burger, OrderItem, Order } from '../order.model';
 import { Response } from 'src/app/common/response.model';
 
 @Component({
@@ -15,6 +15,8 @@ export class OrderEditComponent implements OnInit {
   form: FormGroup;
   burgers: Burger[] = [];
   currItem: OrderItem = null;
+  order: Order = null;
+  reading = false;
   constructor(
     private service: OrderService,
     private router: Router,
@@ -22,7 +24,18 @@ export class OrderEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => console.log(+params['id']));
+    this.route.params.subscribe((params: Params) => {
+      this.reading = +params['id'] ? true : false;
+      if (this.reading)
+        this.service.getOrder(+params['id']).subscribe(
+          (response: Response) => {
+            if (response.error) return alert(response.error);
+            this.fillForm(response.data);
+          },
+          err => console.log('OrderGet.Error', err)
+        );
+    });
+
     this.route.data.subscribe((data: any) => this.burgers = data['burgers']);
     this.form = new FormGroup({
       'total': new FormControl(),
@@ -36,6 +49,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   submit(): void {
+    if (this.reading) return;
     this.service.save(this.form.value).subscribe(
       (response: Response) => {
         if (response.error)
@@ -64,13 +78,13 @@ export class OrderEditComponent implements OnInit {
     this.currItem = (<FormGroup>(<FormArray>this.form.get('items')).at(index)).value;
   }
 
-  addItem(): void {
+  addItem(orderItem?: OrderItem): void {
     const item = new FormGroup({
       'burger': new FormGroup({
-        'id': new FormControl(this.burgers[0].id),
-        'name': new FormControl(this.burgers[0].name)
+        'id': new FormControl(orderItem ? orderItem.burger.id : this.burgers[0].id),
+        'name': new FormControl(orderItem ? orderItem.burger.name : this.burgers[0].name)
       }),
-      'ingredients': this.parseIngredients(this.burgers[0].ingredients)
+      'ingredients': this.parseIngredients(orderItem ? orderItem.ingredients : this.burgers[0].ingredients)
     });
     (<FormArray>this.form.get('items')).push(item);
     this.updatePrice();
@@ -96,6 +110,7 @@ export class OrderEditComponent implements OnInit {
   }
 
   private updatePrice(): void {
+    if (this.reading) return;
     this.form.patchValue({ total: null, discount: null });
     this.service.calculatePrice(this.form.value).subscribe(
       (response: Response) => {
@@ -126,5 +141,13 @@ export class OrderEditComponent implements OnInit {
         })
       }));
     return list;
+  }
+
+  private fillForm(data: Order): void {
+    this.order = data;
+    this.form.reset();
+    this.form.setControl('items', new FormArray([]));
+    this.form.patchValue(this.order);
+    this.order.items.forEach((item: OrderItem) => this.addItem(item));
   }
 }

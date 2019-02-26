@@ -1,12 +1,12 @@
-<h3 class="title"> <span class="accent">#</span> {{ reading ? 'Pedido X' : 'Novo Pedido' }}</h3>
+<h3 class="title"> <span class="accent">#</span> {{ reading ? 'Pedido ' + order?.id : 'Novo Pedido' }}</h3>
 <div class="row">
   <div class="col-xs-12">
     <form [formGroup]="form" (ngSubmit)="submit()">
 
       <div class="row">
         <div class="col-xs-12">
-          <div class="btn-group" role="group" aria-label="...">
-            <button type="submit" class="btn btn-default" [disabled]="!form.valid || form.get('items').length <= 0">Salvar</button>
+          <div class="btn-group" role="group" aria-label="..." *ngIf="!reading">
+            <button type="submit" class="btn btn-success" [disabled]="!form.valid || form.get('items').length <= 0">Salvar</button>
             <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
           </div>
           <div class="order-price">
@@ -26,13 +26,13 @@
         <div class="col-xs-12 col-md-6">
           <div class="form-group">
             <label for="name">Cliente</label>
-            <input type="text" id="userName" formControlName="name" class="form-control" />
+            <input type="text" id="userName" formControlName="name" class="form-control" [readonly]="reading"/>
           </div>
         </div>
         <div class="col-xs-12 col-md-6">
           <div class="form-group">
             <label for="name">Telefone</label>
-            <input type="text" id="userPhone" formControlName="phone" class="form-control" />
+            <input type="text" id="userPhone" formControlName="phone" class="form-control" [readonly]="reading"/>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
           <div class="row" *ngFor="let item of getItems(); let i = index" [formGroupName]="i" style="margin-top: 10px;">
             <div class="col-xs-8 col-lg-9" formGroupName="burger">
               <select class="form-control" formControlName="id" (change)="onChangeBurger(i, $event.target.value)">
-                <option [value]="burger.id" *ngFor="let burger of burgers">{{ burger.name }} - {{ burger.price | currency: 'BRL' }}</option>
+                <option [value]="burger.id" *ngFor="let burger of burgers" [disabled]="reading">{{ burger.name }} - {{ burger.price | currency: 'BRL' }}</option>
               </select>
             </div>
             <div class="col-xs-4 col-lg-3">
@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-default" (click)="editItem(i)">
                   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
-                <button type="button" class="btn btn-default" (click)="deleteItem(i)">
+                <button type="button" class="btn btn-default" (click)="deleteItem(i)" *ngIf="!reading">
                   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </button>
               </div>
@@ -60,13 +60,13 @@
           <hr>
           <div class="row">
             <div class="col-xs-12">
-              <button type="button" class="btn btn-success" (click)="addItem()">Novo Item</button>
+              <button type="button" class="btn btn-default" (click)="addItem()" *ngIf="!reading">Novo Item</button>
             </div>
           </div>
         </div>
       </div>
 
-      <app-burger-ingredients *ngIf="currItem" [orderItem]="currItem" (updated)="onUpdate($event)"></app-burger-ingredients>
+      <app-burger-ingredients *ngIf="currItem" [orderItem]="currItem" [reading]="reading" (updated)="onUpdate($event)"></app-burger-ingredients>
     </form>
   </div>
 </div>

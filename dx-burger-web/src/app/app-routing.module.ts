@@ -14,6 +14,11 @@ const routes: Routes = [
         path: 'new',
         component: OrderEditComponent,
         resolve: { burgers: OrderEditResolver }
+      },
+      {
+        path: ':id',
+        component: OrderEditComponent,
+        resolve: { burgers: OrderEditResolver }
       }
     ]
   },

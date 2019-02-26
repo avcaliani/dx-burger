@@ -12,10 +12,10 @@
           <div class="row" style="margin-top: 10px;">
             <div class="col-xs-12 col-lg-6" *ngFor="let item of getIngredients(); let i = index" [formGroupName]="i">
               <label>{{ orderItem.ingredients[i]?.ingredient?.name }}</label>
-              <input type="number" class="form-control" formControlName="quantity">
+              <input type="number" class="form-control" formControlName="quantity" [readonly]="reading">
             </div>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="!reading">
             <div class="col-xs-12">
               <br />
               <button type="button" class="btn btn-success" (click)="save()">Pronto</button>

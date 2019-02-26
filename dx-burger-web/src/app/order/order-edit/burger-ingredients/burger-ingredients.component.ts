@@ -28,6 +28,7 @@ import { OrderItem, OrderIngredient } from '../../order.model';
 export class BurgerIngredientsComponent implements OnInit {
 
   @Input() orderItem: OrderItem;
+  @Input() reading = false;
   @Output() updated = new EventEmitter<OrderItem>();
   form: FormArray;
 
