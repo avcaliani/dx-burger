@@ -1,5 +1,7 @@
 <h3 class="title"> <span class="accent">#</span> Pedidos</h3>
-<a [routerLink]="[ '/order/new' ]" routerLinkActive="active" class="add-button">+</a>
+<a [routerLink]="[ '/order/new' ]" routerLinkActive="active" class="add-button">
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+</a>
 <div class="list-group" *ngIf="orders && orders.length > 0; else noOrders">
   <a class="list-group-item order-item"
     *ngFor="let order of orders"

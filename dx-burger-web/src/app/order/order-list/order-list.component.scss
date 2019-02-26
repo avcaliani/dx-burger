@@ -50,7 +50,6 @@
   height: 50px;
   display: block;
   text-align: center;
-  font-size: 31px;
   box-shadow: 0px 0px 10px 0px grey;
   bottom: 40px;
   right: 25px;
@@ -58,6 +57,9 @@
   z-index: 1000;
   text-decoration: none;
   transition: background .3s ease-in-out;
+  padding: 12px 16px;
+  font-size: 20px;
+  text-align: center;
 
   &.active {
     display: none;
