@@ -96,10 +96,14 @@ public class PromotionServiceImpl implements PromotionService {
      * @return Discount.
      */
     private Double percentage(Promotion promotion, OrderItem orderItem) {
-        boolean present = contains(promotion.getPresent(), orderItem.getIngredients(), true);
-        boolean notPresent = !contains(promotion.getNotPresent(), orderItem.getIngredients(), false);
-        if (!present || !notPresent)
+
+        List<OrderIngredient> ingredients = orderItem.getIngredients();
+        if (!contains(promotion.getPresent(), ingredients, true))
             return 0.0;
+
+        if (!contains(promotion.getNotPresent(), ingredients, false))
+            return 0.0;
+
         return orderItem.getPrice() * promotion.getPercent();
     }
 
@@ -128,7 +132,7 @@ public class PromotionServiceImpl implements PromotionService {
     }
 
     /**
-     * Check if any ingredient is in/out of the Order Ingredient List.
+     * Check if all {@code ingredients} are/aren't present in {@code orderIngredients}.
      *
      * @param ingredients      Ingredients.
      * @param orderIngredients Order Ingredients.
@@ -138,16 +142,18 @@ public class PromotionServiceImpl implements PromotionService {
     private boolean contains(List<Ingredient> ingredients, List<OrderIngredient> orderIngredients, boolean exist) {
 
         if (ingredients == null || ingredients.isEmpty())
-            return exist;
+            return true;
 
         if (orderIngredients == null || orderIngredients.isEmpty())
-            return false;
+            return !exist;
 
         int contain = 0;
-        for (OrderIngredient oi : orderIngredients)
+        for (OrderIngredient oi : orderIngredients) {
+            if (oi.getQuantity() <= 0) continue;
             if (ingredients.contains(oi.getIngredient()))
                 contain++;
+        }
 
-        return exist ? contain >= ingredients.size() : contain > 0;
+        return exist ? contain >= ingredients.size() : contain <= 0;
     }
 }
