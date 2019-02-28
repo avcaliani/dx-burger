@@ -1,27 +1,94 @@
-# DxBurgerWeb
+# DX Burger Web
+By Anthony Vilarim Caliani
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+[![#](https://img.shields.io/badge/node-v11.6.0-brightgreen.svg)](#) [![#](https://img.shields.io/badge/npm-6.8.0-lightgrey.svg)](#) [![#](https://img.shields.io/badge/angular--cli-7.1.4-red.svg)](#)
 
-## Development server
+[![#](https://img.shields.io/badge/docker-18.09.2-steelblue.svg)](#)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Guides
+Before you run this application you must have installed the following softwares in your machine:
+ - Node.js
+ - npm
+ - Ng CLI
+ - Docker
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+First run `npm install` and then if everything is ok, you just need to run `sh run.sh build-start` and enjoy it 🙂
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Project Map
+```
+dx-burger-web/
+├── DockerFile
+├── README.md
+├── angular.json
+├── e2e
+│   ├── protractor.conf.js
+│   ├── src
+│   │   ├── app.e2e-spec.ts
+│   │   └── app.po.ts
+│   └── tsconfig.e2e.json
+├── nginx.conf
+├── package-lock.json
+├── package.json
+├── run.sh
+├── src
+│   ├── app
+│   │   ├── app-routing.module.ts
+│   │   ├── app.component.html
+│   │   ├── app.component.scss
+│   │   ├── app.component.ts
+│   │   ├── app.module.ts
+│   │   ├── common
+│   │   │   ├── footer
+│   │   │   │   ├── footer.component.html
+│   │   │   │   ├── footer.component.scss
+│   │   │   │   └── footer.component.ts
+│   │   │   ├── header
+│   │   │   │   ├── header.component.html
+│   │   │   │   ├── header.component.scss
+│   │   │   │   └── header.component.ts
+│   │   │   └── response.model.ts
+│   │   └── order
+│   │       ├── order-edit
+│   │       │   ├── burger-ingredients
+│   │       │   │   ├── burger-ingredients.component.html
+│   │       │   │   └── burger-ingredients.component.ts
+│   │       │   ├── order-edit.component.html
+│   │       │   ├── order-edit.component.scss
+│   │       │   ├── order-edit.component.ts
+│   │       │   └── order-edit.resolver.ts
+│   │       ├── order-empty
+│   │       │   └── order-empty.component.ts
+│   │       ├── order-list
+│   │       │   ├── order-list.component.html
+│   │       │   ├── order-list.component.scss
+│   │       │   └── order-list.component.ts
+│   │       ├── order.model.ts
+│   │       └── order.service.ts
+│   ├── assets
+│   │   └── img
+│   │       ├── loader.svg
+│   │       └── logo.svg
+│   ├── browserslist
+│   ├── environments
+│   │   ├── environment.prod.ts
+│   │   └── environment.ts
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── karma.conf.js
+│   ├── main.ts
+│   ├── polyfills.ts
+│   ├── styles.scss
+│   ├── test.ts
+│   ├── tsconfig.app.json
+│   ├── tsconfig.spec.json
+│   └── tslint.json
+├── tsconfig.json
+└── tslint.json
+```
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+_You can find [@avcaliani](#) at [GitHub](https://github.com/avcaliani) or [GitLab](https://gitlab.com/avcaliani)._
