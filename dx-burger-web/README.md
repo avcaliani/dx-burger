@@ -1,12 +1,9 @@
-# DX Burger Web
+# 🍔 DX Burger Web
 By Anthony Vilarim Caliani
 
-[![#](https://img.shields.io/badge/node-v11.6.0-brightgreen.svg)](#) [![#](https://img.shields.io/badge/npm-6.8.0-lightgrey.svg)](#) [![#](https://img.shields.io/badge/angular--cli-7.1.4-red.svg)](#)
+[![#](https://img.shields.io/badge/licence-MIT-blue.svg)](#) [![#](https://img.shields.io/badge/node-v11.6.0-brightgreen.svg)](#) [![#](https://img.shields.io/badge/npm-6.8.0-lightgrey.svg)](#) [![#](https://img.shields.io/badge/angular--cli-7.1.4-red.svg)](#)
 
-[![#](https://img.shields.io/badge/docker-18.09.2-steelblue.svg)](#)
-
-
-## Guides
+## Quick Start
 Before you run this application you must have installed the following softwares in your machine:
  - Node.js
  - npm
@@ -14,8 +11,6 @@ Before you run this application you must have installed the following softwares 
  - Docker
 
 First run `npm install` and then if everything is ok, you just need to run `sh run.sh build-start` and enjoy it 🙂
-
----
 
 ## Project Map
 ```
@@ -88,6 +83,9 @@ dx-burger-web/
 ├── tsconfig.json
 └── tslint.json
 ```
+
+## Screenshots
+![#](screenshots/mobile.jpg)
 
 ---
 

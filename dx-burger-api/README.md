@@ -1,20 +1,15 @@
-# DX Burger API
+# 🍔 DX Burger API
 By Anthony Vilarim Caliani
 
-[![#](https://img.shields.io/badge/java-1.8.0__181-yellow.svg)](#) [![#](https://img.shields.io/badge/spring--boot-2.1.3.RELEASE-green.svg)](#) [![#](https://img.shields.io/badge/maven-3.6.0-blue.svg)](#) 
+[![#](https://img.shields.io/badge/licence-MIT-blue.svg)](#) [![#](https://img.shields.io/badge/java-1.8-red.svg)](#) [![#](https://img.shields.io/badge/spring--boot-2.1.3.RELEASE-green.svg)](#) [![#](https://img.shields.io/badge/maven-3.6.0-blue.svg)](#) 
 
-[![#](https://img.shields.io/badge/docker-18.09.2-steelblue.svg)](#)
-
-
-## Guides
+## Quick Start
 Before you run this application you must have installed the following softwares in your machine:
  - Java 8
  - Maven
  - Docker
 
 If everything is ok, then you just need to run `sh run.sh build-start` and enjoy it 🙂
-
----
 
 ## Project Map
 ```
@@ -102,8 +97,6 @@ dx-burger-api/
                             ├── BurgerServiceTest.java
                             └── OrderServiceTest.java
 ```
-
----
 
 ## Help
 

@@ -1,26 +1,22 @@
-# DX Burger
+# 🍔 DX Burger
 By Anthony Vilarim Caliani
 
-[![#](https://img.shields.io/badge/node-v11.6.0-brightgreen.svg)](#) [![#](https://img.shields.io/badge/npm-6.8.0-lightgrey.svg)](#) [![#](https://img.shields.io/badge/angular--cli-7.1.4-red.svg)](#)
+[![#](https://img.shields.io/badge/licence-MIT-blue.svg)](#) [![#](https://img.shields.io/badge/docker-18.09.2-steelblue.svg)](#)
 
-[![#](https://img.shields.io/badge/java-1.8.0__181-yellow.svg)](#) [![#](https://img.shields.io/badge/spring--boot-2.1.3.RELEASE-green.svg)](#) [![#](https://img.shields.io/badge/maven-3.6.0-blue.svg)](#)
+## Description
+These are my **DX Burger** Projects which contain a web application developed in Angular and a RESTful API developed in Java with Spring Boot. Both projects are prepared to run inside a Docker container and as a bonus the DX Burger API will run behind a Nginx server which will be running inside another Docker container.
 
-[![#](https://img.shields.io/badge/docker-18.09.2-steelblue.svg)](#)
-
-## Repository Description
-These are my **DX Burger** Projects which contain a web application developed in Angular and a RESTFul API developed in Java with Spring Boot. Both projects are prepared to run inside a Docker container and as a bonus the DX Burger API will run behind a Nginx server which will be running inside another Docker container.
-
-## Repository Projects
-- **dx-burger-api**: This is the DX Burger RESTFul API.
-- **dx-burger-web**: This is the DX Burger Web Application.
+## Projects
+- **[dx-burger-api](dx-burger-api/README.md)**: This is the DX Burger RESTFul API.
+- **[dx-burger-web](dx-burger-web/README.md)**: This is the DX Burger Web Application.
 
 ## How can you run it in your machine?
 First of all, you need some softwares to make it possible.
- - **API**: Java 1.8 ☕️
- - **API**: Maven 🍃
- - **WEB**: Node.js + npm 😎
- - **WEB**: Ng CLI 🅰️
- - **BOTH**: Docker 🐳
+ - ☕️ **API**: Java 1.8
+ - 🍃 **API**: Maven
+ - 😎 **WEB**: Node.js + npm
+ - 🅰️ **WEB**: Ng CLI
+ - 🐳 **BOTH**: Docker
 
 So, let's do this! I've prepared 2 files that are called `run.sh`. One of them is for DX Burger API and the other one is for DX Burger Web. 
 
@@ -57,13 +53,6 @@ sh run.sh build-start
 # When it finishes, open your browser at "http://localhost:3000" and enjoy it!
 
 ```
-
-## Notes
-You can find more details inside each project 🙂
-
-If you have any feedback, please let me know! I hope it has helped you!
-
-#### Bye 😎
 
 ---
 
