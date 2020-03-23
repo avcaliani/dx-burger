@@ -53,7 +53,3 @@ sh run.sh build-start
 # When it finishes, open your browser at "http://localhost:3000" and enjoy it!
 
 ```
-
----
-
-_You can find [@avcaliani](#) at [GitHub](https://github.com/avcaliani) or [GitLab](https://gitlab.com/avcaliani)._
