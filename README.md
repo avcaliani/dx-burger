@@ -3,7 +3,6 @@ By Anthony Vilarim Caliani
 
 [![#](https://img.shields.io/badge/licence-MIT-blue.svg)](#) [![#](https://img.shields.io/badge/docker-18.09.2-steelblue.svg)](#)
 
-## Description
 These are my **DX Burger** Projects which contain a web application developed in Angular and a RESTful API developed in Java with Spring Boot. Both projects are prepared to run inside a Docker container and as a bonus the DX Burger API will run behind a Nginx server which will be running inside another Docker container.
 
 ## Projects
